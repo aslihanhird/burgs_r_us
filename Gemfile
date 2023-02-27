@@ -76,5 +76,6 @@ group :test do
   gem "webdrivers"
 end
 
-# Custom gem
+# Custom gems
 gem 'devise'
+gem 'faker'

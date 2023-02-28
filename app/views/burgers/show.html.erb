@@ -1,2 +1,29 @@
-<h2><%= @burger.name %></h2>
-<p><%= @burger.description %></p>
+
+<div class="container grid mt-4">
+  <div class="row">
+    <div class="col">
+      <div class="pb-4">
+        <% if @burger.photo.count > 1 %>
+          <%= render "carousel" %>
+        <% else %>
+          <%= cl_image_tag(@burger.photo[0].key, class: "rounded") %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col pb-4">
+      <div>
+        <h1><%= @burger.name %></h1>
+        <p><%= @burger.description %></p>
+      </div>
+      
+      <h3>Reviews for <%= @burger.name %></h3>
+
+        <% @burger.reviews.each do |review| %>
+          <div class="container">
+            <h4><%= review.rating %></h4>
+            <p><%= review.content %></p>
+          </div>
+        <% end %>
+    </div>
+  </div>
+</div>

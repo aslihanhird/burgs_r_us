@@ -15,6 +15,22 @@
     <p class="alert"><%= alert %></p>
     <%= yield %>
     <p class="notice"><%= notice %></p>
-    <%= render 'shared/footer' %>
+
+    <%# LINKS FOR TESTING PURPOSES %>
+
+    <% if current_user %>
+      <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete} %>
+
+      <%= link_to "Edit user", edit_user_registration_path %>
+
+      <%= link_to "Add a burger",
+      new_burger_path %>
+    <% end %>
+
+    <% unless current_user %>
+      <%= link_to "Log in", new_user_session_path %>
+    <% end %>
+
+      <%= render 'shared/footer' %>
   </body>
 </html>

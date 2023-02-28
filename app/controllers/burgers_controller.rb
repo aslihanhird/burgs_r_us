@@ -19,7 +19,7 @@ class BurgersController < ApplicationController
     if @burger.save
       redirect_to burger_path(@burger)
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 

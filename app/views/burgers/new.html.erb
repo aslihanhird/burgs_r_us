@@ -1,9 +1,13 @@
-<h1>Add a new burger</h1>
+<div class="container">
+    <h1>Add a new burger</h1>
+    <%= simple_form_for(@burger) do |f| %>
+      <%= f.input :name %>
+      <%= f.input :description %>
+      <%= f.input :photos,
+                  label: "One or more photos of your burger 🍔",
+                  as: :file,
+                  input_html: { multiple: true }  %>
+      <%= f.button :submit, "Add your burger" %>
+    <% end %>
 
-<%= form_with model: @burger do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.label :description %>
-  <%= f.text_field :description %>
-  <%= f.submit %>
-<% end %>
+</div>

@@ -11,20 +11,39 @@
           <%# <% if user_signed_in? %>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav me-auto">
-                  <li class="nav-item active">
-                    <a class="nav-link" href="#">Home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Messages</a>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <img class="avatar dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="https://kitt.lewagon.com/placeholder/users/ssaunier" />
-                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <a class="dropdown-item" data-turbo-method="delete" href="#">Log out</a>
-                    </div>
-                  </li>
+                    <% unless current_user %>
+                      <li class="nav-item">
+                        <%= link_to "Create an account", new_user_registration_path %>
+                      </li>
+
+                      <li class="nav-item">
+                        <%= link_to "Log in",  new_user_session_path %>
+                      </li>
+                    <% end %>
+
+                    <%#  ACTIONS AS LOGGED IN USER %>
+                    <% if current_user %>
+
+                      <% if current_user.photo.key %>
+                        <li>
+                          <%= cl_image_tag current_user.photo.key, class: "avatar" %>
+                        </li>
+                      <% end %>
+
+                      <li class="nav-item dropdown">
+
+
+                        <div class="dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-hashpopup="true">
+                          <i class="fa-solid fa-bars"></i>
+                        </div>
+
+                          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                              <%= link_to "Add a burger", new_burger_path, class: "dropdown-item" %>
+                              <%= link_to "Your profile", edit_user_registration_path, class: "dropdown-item" %>
+                              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+                          </div>
+                      </li>
+                    <% end %>
                   <!--li class="nav-item"-->
                   <!--/li-->
               </ul>

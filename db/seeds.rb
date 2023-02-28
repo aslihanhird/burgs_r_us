@@ -34,7 +34,7 @@ end
 puts "Generating 10 burgers"
 10.times do
   burger = Burger.new(
-    description: Faker::Quotes::Shakespeare,
+    description: Faker::Quotes::Shakespeare.hamlet_quote,
     name: "Burger #{Faker::Food.vegetables}",
     user_id: User.all.sample.id
   )

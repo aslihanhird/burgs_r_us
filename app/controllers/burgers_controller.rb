@@ -1,5 +1,4 @@
 class BurgersController < ApplicationController
-
   def index
     @burgers = Burger.all
   end
@@ -25,7 +24,6 @@ class BurgersController < ApplicationController
   private
 
   def burger_params
-    params.require(:burger).permit(:name, :description, :user_id, :photos)
+    params.require(:burger).permit(:name, :description, :user_id, photos: [])
   end
-
 end

@@ -9,15 +9,17 @@
 # Generate some users
 
 puts "--------------------------------"
-puts "D-d-d-d-dropping the database..."
+puts "🤖🤘 > D-d-d-d-dropping the database ..."
 puts "--------------------------------"
+Review.delete_all
 Burger.delete_all
-User.delete_all
 
-puts "Database cleared succesfully."
+puts "🤖 > I'll be nice, your users have not been deleted so you can re-use them."
 
 puts "--------------------------------"
-puts "Generating 3 users"
+puts "Database cleared succesfully. ✅"
+puts "--------------------------------"
+puts "🤖 > Generating 3 users"
 puts "--------------------------------"
 
 3.times do
@@ -41,9 +43,9 @@ puts "--------------------------------"
   end
 end
 
-puts "Users generated succesfully"
+puts "Users generated succesfully ✅"
 puts "--------------------------------"
-puts "Generating 10 burgers"
+puts "🤖 > Generating 10 burgers"
 puts "--------------------------------"
 
 10.times do
@@ -55,17 +57,39 @@ puts "--------------------------------"
 
   image = URI.open('https://picsum.photos/600')
 
-  burger.photo.attach(io: image, filename: rand(1...5000), content_type: 'image/jpg')
+  burger.photos.attach(io: image, filename: rand(1...5000), content_type: 'image/jpg')
 
   if burger.valid?
-    puts "Saving burger #{burger.name}"
+    puts "🤖 > Saving burger #{burger.name}"
     burger.save
   else
-    puts "Invalid user, not saving and moving on."
+    puts "🤖 > Invalid user, not saving and moving on."
   end
 end
 
 puts "--------------------------------"
-puts "Burgers generated succesfully"
+puts "Burgers generated succesfully ✅"
 puts "--------------------------------"
+puts "🤖 > Generating 3 to 5 reviews for every burger"
+puts "--------------------------------"
+
+# For every burger
+Burger.all.each do |burger|
+  # Create 3 to 5 reviews
+  rand(3..5).times do
+    review = Review.new(
+      content: Faker::TvShows::GameOfThrones.quote,
+      rating: rand(1..5),
+      burger_id: burger.id,
+      user_id: User.all.sample.id
+    )
+
+    if review.valid?
+      review.save
+      puts "🤖 > Review saved (ID: #{review.id})"
+    else
+      puts "🤖 > Invalid review, not saving and moving on."
+    end
+  end
+end
 puts "✅✅✅ Seed succesful. Back to coding!!! 😤"

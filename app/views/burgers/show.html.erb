@@ -6,4 +6,13 @@
   <% @burger.photos.each do |photo| %>
     <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
   <% end %>
+
+<h3>Reviews for <%= @burger.name %></h3>
+
+<% @burger.reviews.each do |review| %>
+  <div class="container">
+    <h4><%= review.rating %></h4>
+    <p><%= review.content %></p>
+  </div>
+<% end %>
 </div>

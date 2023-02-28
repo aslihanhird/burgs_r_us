@@ -1,11 +1,11 @@
 class BurgersController < ApplicationController
+  before_action :current_burger, only: %i[edit update show]
+
   def index
     @burgers = Burger.all
   end
 
-  def show
-    @burger = Burger.find(params[:id])
-  end
+  def show; end
 
   def new
     @burger = Burger.new
@@ -21,8 +21,21 @@ class BurgersController < ApplicationController
     end
   end
 
+  def edit; end
+
+  def update
+    if @burger.update(burger_params)
+      redirect_to burger_path(@burger)
+    else
+      render edit_burger_path, status: :unprocessable_entity
+    end
+  end
+
   private
 
+  def current_burger
+    @burger = Burger.find(params[:id])
+  end
   def burger_params
     params.require(:burger).permit(:name, :description, :user_id, photos: [])
   end

@@ -1,0 +1,13 @@
+<h1>Edit <%= @burger.name %></h1>
+
+<h3>Edit name</h3>
+  <%= simple_form_for(@burger) do |f| %>
+    <%= f.input :name %>
+    <%= f.submit %>
+  <% end %>
+
+<h3>Edit the description</h3>
+  <%= simple_form_for(@burger) do |f| %>
+    <%= f.input :description %>
+    <%= f.submit %>
+  <% end %>

@@ -14,7 +14,6 @@ class BurgersController < ApplicationController
 
   def create
     @burger = Burger.new(burger_params)
-    @current_user = current_user
     @burger.user_id = current_user.id
     if @burger.save
       redirect_to burger_path(@burger)

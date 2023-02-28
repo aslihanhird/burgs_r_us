@@ -1,0 +1,7 @@
+<h1>My booking for: <%= @booking.burger.name %></h1>
+
+<p>Start date: <%= @booking.start_date %></p>
+
+<p>End date: <%= @booking.end_date %></p>
+
+<%= link_to "Go to the burger page", burger_path(@burger) %>

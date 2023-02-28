@@ -1,2 +1,9 @@
+
+<div class="container">
 <h2><%= @burger.name %></h2>
 <p><%= @burger.description %></p>
+
+  <% @burger.photos.each do |photo| %>
+    <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+  <% end %>
+</div>

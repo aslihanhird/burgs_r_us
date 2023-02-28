@@ -1,0 +1,15 @@
+<div id="burgs-carousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <% @burger.photo.each_with_index do |photo, index| %>
+      <% if index == 1 %>
+        <div class="carousel-item active">
+          <%= cl_image_tag(photo.key, class: "d-block") %>
+        </div>
+      <% else %>
+        <div class="carousel-item">
+          <%= cl_image_tag(photo.key, class: "d-block") %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

@@ -1,2 +1,17 @@
-<h2><%= @burger.name %></h2>
-<p><%= @burger.description %></p>
+<div class="container grid">
+  <div class="row">
+    <div class="col">
+      <div class="d-flex align-items-end justify-content-center pb-4">
+        <% if @burger.photo.count > 1 %>
+          <%= render "carousel" %>
+        <% else %>
+          <%= cl_image_tag(@burger.photo[0].key) %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col d-flex flex-column align-items-start justify-content-center pb-4">
+      <h1><%= @burger.name %></h1>
+      <p><%= @burger.description %></p>
+    </div>
+  </div>
+</div>

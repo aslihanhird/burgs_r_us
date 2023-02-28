@@ -8,19 +8,29 @@
 
 # Generate some users
 
-puts "D-d-d-d-drop the database..."
-
+puts "--------------------------------"
+puts "D-d-d-d-dropping the database..."
+puts "--------------------------------"
 Burger.delete_all
 User.delete_all
 
+puts "Database cleared succesfully."
+
+puts "--------------------------------"
 puts "Generating 3 users"
+puts "--------------------------------"
 
 3.times do
+  username = Faker::Creature::Bird.anatomy
   user = User.new(
-    username: Faker::Creature::Bird.anatomy,
-    email: "#{Faker::Creature::Bird.anatomy}@gmail.com",
+    username: username,
+    email: "#{username}@gmail.com",
     password: "123456"
   )
+
+  image = URI.open('https://picsum.photos/600')
+
+  user.photo.attach(io: image, filename: "Profile picture", content_type: 'image/jpg')
 
   if user.valid?
     puts "Saving user #{user.username}"
@@ -31,18 +41,31 @@ puts "Generating 3 users"
   end
 end
 
+puts "Users generated succesfully"
+puts "--------------------------------"
 puts "Generating 10 burgers"
+puts "--------------------------------"
+
 10.times do
   burger = Burger.new(
-    description: Faker::Quotes::Shakespeare,
+    description: Faker::Quotes::Shakespeare.hamlet_quote,
     name: "Burger #{Faker::Food.vegetables}",
     user_id: User.all.sample.id
   )
 
+  image = URI.open('https://picsum.photos/600')
+
+  burger.photo.attach(io: image, filename: rand(1...5000), content_type: 'image/jpg')
+
   if burger.valid?
-    puts "Saving  burger #{burger.name}"
+    puts "Saving burger #{burger.name}"
     burger.save
   else
     puts "Invalid user, not saving and moving on."
   end
 end
+
+puts "--------------------------------"
+puts "Burgers generated succesfully"
+puts "--------------------------------"
+puts "✅✅✅ Seed succesful. Back to coding!!! 😤"

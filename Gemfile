@@ -79,3 +79,6 @@ end
 # Custom gems
 gem 'devise'
 gem 'faker'
+gem 'dotenv-rails', groups: [:development, :test]
+gem 'cloudinary'
+gem 'open-uri'

@@ -3,11 +3,11 @@
     <% @burger.photo.each_with_index do |photo, index| %>
       <% if index == 1 %>
         <div class="carousel-item active">
-          <%= cl_image_tag(photo.key, class: "d-block") %>
+          <%= cl_image_tag(photo.key, class: "d-block rounded") %>
         </div>
       <% else %>
         <div class="carousel-item">
-          <%= cl_image_tag(photo.key, class: "d-block") %>
+          <%= cl_image_tag(photo.key, class: "d-block rounded") %>
         </div>
       <% end %>
     <% end %>

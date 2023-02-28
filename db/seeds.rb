@@ -8,7 +8,7 @@
 
 # Generate some users
 
-puts "D-d-d-d-drop the database..."
+puts "D-d-d-d-dropping the database..."
 
 Burger.delete_all
 User.delete_all
@@ -16,11 +16,17 @@ User.delete_all
 puts "Generating 3 users"
 
 3.times do
+
+  username = Faker::Creature::Bird.anatomy
   user = User.new(
-    username: Faker::Creature::Bird.anatomy,
-    email: "#{Faker::Creature::Bird.anatomy}@gmail.com",
+    username: username,
+    email: "#{username}@gmail.com",
     password: "123456"
   )
+
+  image = URI.open('https://picsum.photos/600')
+
+  user.photo.attach(io: image, filename: "Profile picture", content_type: 'image/jpg')
 
   if user.valid?
     puts "Saving user #{user.username}"
@@ -38,6 +44,10 @@ puts "Generating 10 burgers"
     name: "Burger #{Faker::Food.vegetables}",
     user_id: User.all.sample.id
   )
+
+  image = URI.open('https://picsum.photos/600')
+
+  burger.photo.attach(io: image, filename: rand(1...5000), content_type: 'image/jpg')
 
   if burger.valid?
     puts "Saving  burger #{burger.name}"

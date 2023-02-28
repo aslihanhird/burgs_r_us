@@ -1,0 +1,8 @@
+<h1>All my bookings</h1>
+
+<% @bookings.each do |booking| %>
+<p><%= booking.burger.name %></p>
+<p>Start date: <%= booking.start_date %></p>
+<p>End date: <%= booking.end_date %></p>
+<%= link_to "See booking", burger_booking_path(booking.burger, booking) %>
+<% end %>

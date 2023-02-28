@@ -24,12 +24,6 @@
                     <%#  ACTIONS AS LOGGED IN USER %>
                     <% if current_user %>
 
-                      <% if current_user.photo.key %>
-                        <li>
-                          <%= cl_image_tag current_user.photo.key, class: "avatar" %>
-                        </li>
-                      <% end %>
-
                       <li class="nav-item dropdown">
 
 

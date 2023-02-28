@@ -10,7 +10,7 @@
     <% @burgers.each do |burger| %>
       <div class="col">
         <div class="card h-100 rounded-3 border-0 shadow position-relative">
-          <%= image_tag burger.photo[0], alt: 'photo of the burger', class: 'card-img-top rounded-top' %>
+          <%= cl_image_tag burger.photos[0].key, alt: 'photo of the burger', class: 'card-img-top rounded-top' %>
           <div class="rating-overlay">
             <small class="bg-light text-warning rounded-circle p-3"><i class="fa-solid fa-star"></i></small>
           </div>

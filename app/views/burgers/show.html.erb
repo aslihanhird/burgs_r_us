@@ -3,10 +3,10 @@
   <div class="row">
     <div class="col">
       <div class="pb-4">
-        <% if @burger.photo.count > 1 %>
+        <% if @burger.photos.count > 1 %>
           <%= render "carousel" %>
         <% else %>
-          <%= cl_image_tag(@burger.photo[0].key, class: "rounded") %>
+          <%= cl_image_tag(@burger.photos[0].key, class: "rounded", width: "500", height: "500", :crop=>"fill") %>
         <% end %>
       </div>
     </div>
@@ -15,7 +15,7 @@
         <h1><%= @burger.name %></h1>
         <p><%= @burger.description %></p>
       </div>
-      
+
       <h3>Reviews for <%= @burger.name %></h3>
 
         <% @burger.reviews.each do |review| %>

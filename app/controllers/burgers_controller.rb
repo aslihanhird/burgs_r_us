@@ -25,7 +25,7 @@ class BurgersController < ApplicationController
   private
 
   def burger_params
-    params.require(:burger).permit(:name, :description, :user_id)
+    params.require(:burger).permit(:name, :description, :user_id, :photos)
   end
 
 end

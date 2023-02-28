@@ -10,6 +10,9 @@
 
 puts "D-d-d-d-drop the database..."
 
+Burger.delete_all
+User.delete_all
+
 puts "Generating 3 users"
 
 3.times do

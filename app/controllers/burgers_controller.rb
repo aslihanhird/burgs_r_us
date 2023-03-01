@@ -5,6 +5,7 @@ class BurgersController < ApplicationController
 
   def show
     @burger = Burger.find(params[:id])
+    @booking = Booking.new
   end
 
   def new
@@ -26,4 +27,5 @@ class BurgersController < ApplicationController
   def burger_params
     params.require(:burger).permit(:name, :description, :user_id, photos: [])
   end
+
 end

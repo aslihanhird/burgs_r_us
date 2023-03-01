@@ -27,3 +27,10 @@
     </div>
   </div>
 </div>
+
+<h1>Add a new booking</h1>
+<%= simple_form_for [@burger, @booking] do |f| %>
+  <%= f.input	 :start_date, as: :date %>
+  <%= f.input	 :end_date, as: :date %>
+  <%= f.submit "Submit booking" %>
+<% end %>

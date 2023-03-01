@@ -1,32 +1,36 @@
-<div class="container">
-  <h1>Edit <%= @burger.name %></h1>
+<div class="container my-5">
+  <div class="card border-0 rounded-4 p-4 shadow-sm">
+    <h1>Edit <%= @burger.name %></h1>
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      <div class="col">
+        <%= simple_form_for(@burger) do |f| %>
+          <%= f.input :name, label: "Edit name" %>
+          <%= f.submit %>
+        <% end %>
 
-    <%= simple_form_for(@burger) do |f| %>
-      <%= f.input :name, label: "Edit name" %>
-      <%= f.submit %>
-    <% end %>
+        <%= simple_form_for(@burger) do |f| %>
+          <%= f.input :description, label: "Edit description" %>
+          <%= f.submit %>
+        <% end %>
 
-    <%= simple_form_for(@burger) do |f| %>
-      <%= f.input :description, label: "Edit description" %>
-      <%= f.submit %>
-    <% end %>
-
-    <%= simple_form_for(@burger) do |f| %>
-      <%= f.input :photos,
-              label: "Add photos",
-              as: :file,
-              input_html: { multiple: true }  %>
-      <%= f.submit %>
-    <% end %>
-
-    <h4>Your attached pictures</h4>
-    <p>Currently you are only able to add pictures. You can't delete them (yet!)</p>
-    <div class="d-block">
-      <% @burger.photos.each do |picture| %>
-          <%= cl_image_tag(picture.key, class: "rounded", width: "300", height: "300", crop: "fill") %>
-      <% end %>
+        <%= simple_form_for(@burger) do |f| %>
+          <%= f.input :photos,
+                  label: "Add photos",
+                  as: :file,
+                  input_html: { multiple: true }  %>
+          <%= f.submit %>
+        <% end %>
+      </div>
+      <div class="col">
+        <h4>Your attached pictures</h4>
+        <p>Currently you are only able to add pictures. You can't delete them (yet!)</p>
+        <div class="d-block">
+          <% @burger.photos.each do |picture| %>
+              <%= cl_image_tag(picture.key, class: "rounded", width: "300", height: "300", crop: "fill") %>
+          <% end %>
+        </div>
+      </div>
     </div>
-
-
+  </div>
     <%= link_to "Back to burger", :back %>
 </div>

@@ -11,19 +11,11 @@
       </div>
     </div>
     <div class="col pb-4">
-      <div>
+      <div class="show-page-main">
         <h1><%= @burger.name %></h1>
         <p><%= @burger.description %></p>
       </div>
-
-      <h3>Reviews for <%= @burger.name %></h3>
-
-        <% @burger.reviews.each do |review| %>
-          <div class="container">
-            <h4><%= review.rating %></h4>
-            <p><%= review.content %></p>
-          </div>
-        <% end %>
+      <%= render "booking" %>
 
         <%# EDIT & DELETE LINKS, ONLY SHOW IF USER IS THE OWNER OF THE BURGER %>
 
@@ -37,7 +29,13 @@
 
     </div>
   </div>
+  <div class="show-page-card background-white">
+    <h2 class="text-center">Reviews</h2>
+    <% @burger.reviews.each do |review| %>
+      <div class="review-item">
+        <p class="review-item-rating"><%= review.rating %></p>
+        <p><%= review.content %></p>
+      </div>
+    <% end %>
+  </div>
 </div>
-
-<%# CODE ADDED BY LOIC. REMOVE THIS LINE %>
-<%= render "booking" %>

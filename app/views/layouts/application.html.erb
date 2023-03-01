@@ -12,9 +12,15 @@
 
   <body>
     <%= render 'shared/navbar' %>
+    <%# Only flashes when a user tries to delete a burger that he isn't supposed to %>
+      <% flash.each do |type, msg| %>
+        <div class="alert alert-danger">
+          <%= msg %>
+        </div>
+      <% end %>
     <p class="alert"><%= alert %></p>
-    <%= yield %>
     <p class="notice"><%= notice %></p>
+    <%= yield %>
 
     <%= render 'shared/footer' %>
   </body>

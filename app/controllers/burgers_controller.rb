@@ -1,5 +1,5 @@
 class BurgersController < ApplicationController
-  before_action :current_burger, only: %i[edit update show]
+  before_action :current_burger, only: %i[edit update show destroy]
 
   def index
     @burgers = Burger.all
@@ -31,11 +31,23 @@ class BurgersController < ApplicationController
     end
   end
 
+  def destroy
+    if current_user == @burger.user
+      @burger.destroy
+      flash.alert = "Burger has been deleted succesfully."
+    else
+      flash.alert = "You are not allowed to delete this burger."
+    end
+
+    redirect_to root_path
+  end
+
   private
 
   def current_burger
     @burger = Burger.find(params[:id])
   end
+
   def burger_params
     params.require(:burger).permit(:name, :description, :user_id, photos: [])
   end

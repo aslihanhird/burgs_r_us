@@ -24,6 +24,17 @@
             <p><%= review.content %></p>
           </div>
         <% end %>
+
+        <%# EDIT & DELETE LINKS, ONLY SHOW IF USER IS THE OWNER OF THE BURGER %>
+
+        <% if current_user == @burger.user %>
+
+          <%= link_to "Delete this burger", burger_path(@burger), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this burger?"} %>
+
+          <%= link_to "Edit this burger", edit_burger_path(@burger) %>
+
+        <% end %>
+
     </div>
   </div>
 </div>

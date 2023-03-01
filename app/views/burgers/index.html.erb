@@ -14,7 +14,11 @@
         <div class="card h-100 rounded-3 border-0 shadow position-relative">
           <%= link_to cl_image_tag(burger.photos[0].key, alt: 'photo of the burger', class: 'card-img-top rounded-top'), burger_path(burger) %>
           <div class="rating-overlay">
-            <small class="bg-light text-warning rounded-circle p-3"><i class="fa-solid fa-star"></i></small>
+            <% if burger.reviews.count != 0 %>
+              <small class="bg-light rounded-circle p-3 px-2"><%= burger.average_rating %> <i class="fa-solid fa-star fa-2xs"></i></small>
+            <% else %>
+              <small class="bg-light rounded-circle p-3 px-1">New <i class="fa-solid fa-star fa-2xs"></i></small>
+            <% end %>
           </div>
           <div class="card-body">
             <h5 class="card-title"><%= burger.name %></h5>

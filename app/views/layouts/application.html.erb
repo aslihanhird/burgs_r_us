@@ -10,7 +10,7 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
-  <body>
+  <body class="d-flex flex-column">
     <%= render 'shared/navbar' %>
     <%# Only flashes when a user tries to delete a burger that he isn't supposed to %>
       <% flash.each do |type, msg| %>

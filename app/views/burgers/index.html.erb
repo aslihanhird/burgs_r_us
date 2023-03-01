@@ -1,18 +1,24 @@
 <div class="home-banner">
-  <div class="container mt-0">
-    <h1>Burgs as far as the eye can see...</h1>
-    <p>The choice is <strong>yours</strong>!</p>
+  <div class="container py-5">
   </div>
 </div>
 
 <div class="container">
+  <div class='index-title text-center pt-5'>
+    <h1>Burgs as far as the eye can see...</h1>
+    <p>The choice is <strong>yours</strong>!</p>
+  </div>
   <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-3 mt-4">
     <% @burgers.each do |burger| %>
       <div class="col">
         <div class="card h-100 rounded-3 border-0 shadow position-relative">
           <%= link_to cl_image_tag(burger.photos[0].key, alt: 'photo of the burger', class: 'card-img-top rounded-top'), burger_path(burger) %>
           <div class="rating-overlay">
-            <small class="bg-light text-warning rounded-circle p-3"><i class="fa-solid fa-star"></i></small>
+            <% if burger.reviews.count != 0 %>
+              <small class="bg-light rounded-circle p-3 px-2"><%= burger.average_rating %> <i class="fa-solid fa-star fa-2xs"></i></small>
+            <% else %>
+              <small class="bg-light rounded-circle p-3 px-1">New <i class="fa-solid fa-star fa-2xs"></i></small>
+            <% end %>
           </div>
           <div class="card-body">
             <h5 class="card-title"><%= burger.name %></h5>

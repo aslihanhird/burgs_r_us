@@ -4,8 +4,11 @@ class BurgersController < ApplicationController
   def index
     @burgers = Burger.all
   end
+  
+  def show
+    @booking = Booking.new
+  end
 
-  def show; end
 
   def new
     @burger = Burger.new
@@ -51,4 +54,5 @@ class BurgersController < ApplicationController
   def burger_params
     params.require(:burger).permit(:name, :description, :user_id, photos: [])
   end
+
 end

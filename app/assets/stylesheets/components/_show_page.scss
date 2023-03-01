@@ -34,3 +34,17 @@
   padding-right: 16px;
   color: #7087F7;
 }
+
+.button-main {
+  padding: 8px 12px;
+  border-radius: 16px;
+  background-color: rgb(112, 135, 247);
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+}
+
+.button-main:hover {
+  color: white;
+  background-color: #516DF5;
+}

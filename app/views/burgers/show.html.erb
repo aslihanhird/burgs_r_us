@@ -30,7 +30,10 @@
     </div>
   </div>
   <div class="show-page-card background-white">
-    <h2 class="text-center">Reviews</h2>
+    <div class="d-flex justify-content-between align-items-center">
+      <h2>Reviews</h2>
+      <%= link_to "Review", new_burger_review_path(@burger), class: "button-main" %>
+    </div>
     <% @burger.reviews.each do |review| %>
       <div class="review-item">
         <p class="review-item-rating"><%= review.rating %></p>
@@ -38,4 +41,5 @@
       </div>
     <% end %>
   </div>
+
 </div>

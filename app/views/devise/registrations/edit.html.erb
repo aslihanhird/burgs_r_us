@@ -3,10 +3,11 @@
 <div class="container">
 
     <h1>
-
-          <%= cl_image_tag(user.photo.key,
-                          alt: "profile picture of #{user.username}",
-                          class: "avatar d-inline mr-6") %>
+          <% if user.photo.key %>
+            <%= cl_image_tag(user.photo.key,
+                            alt: "profile picture of #{user.username}",
+                            class: "avatar d-inline mr-6") %>
+          <% end %>
 
           <%= "#{user.username}'s profile" %>
 

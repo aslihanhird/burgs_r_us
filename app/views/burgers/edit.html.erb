@@ -19,10 +19,13 @@
       <%= f.submit %>
     <% end %>
 
-    <%# <h4>Edit your attached pictures</h4> %>
-    <%# <% @burger.photos.each |picture| %> %>
-        <%# <%= cl_image_tag(picture.key, class: "rounded", width: "500", height: "500", crop: "fill") %> %>
-    <%# <% end %> %>
+    <h4>Your attached pictures</h4>
+    <p>Currently you are only able to add pictures. You can't delete them (yet!)</p>
+    <div class="d-block">
+      <% @burger.photos.each do |picture| %>
+          <%= cl_image_tag(picture.key, class: "rounded", width: "300", height: "300", crop: "fill") %>
+      <% end %>
+    </div>
 
 
     <%= link_to "Back to burger", :back %>

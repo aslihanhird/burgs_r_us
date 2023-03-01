@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
 
-  before_action :set_burger, only: %i[ create show]
+  before_action :set_burger, only: %i[create show]
 
   def create
     @booking = Booking.new(booking_params)

@@ -28,9 +28,17 @@
   </div>
 </div>
 
-<h1>Add a new booking</h1>
-<%= simple_form_for [@burger, @booking] do |f| %>
-  <%= f.input	 :start_date, as: :date %>
-  <%= f.input	 :end_date, as: :date %>
-  <%= f.submit "Submit booking" %>
+<%# CODE ADDED BY LOIC. REMOVE THIS LINE %>
+<% if user_signed_in? %>
+  <h1>Add a new booking</h1>
+  <%= simple_form_for [@burger, @booking] do |f| %>
+    <%= f.input	 :start_date, as: :date %>
+    <%= f.input	 :end_date, as: :date %>
+    <%= f.submit "Submit booking" %>
+  <% end %>
+
+<% else %>
+  <p>You need to be logged in to make a booking</p>
+  <button><%= link_to "Login", new_user_session_path %></button>
+  
 <% end %>

@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :burgers, only: %i[show new create] do
     resources :reviews, only: %i[new create]
-    resources :bookings, only: %i[new create show]
+    resources :bookings, only: %i[create show]
   end
   resources :bookings, only: %i[index]
   root to: "burgers#index"

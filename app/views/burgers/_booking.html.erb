@@ -1,13 +1,13 @@
 <% if user_signed_in? %>
-  <% if @burger.user == current_user %>
-    <%= link_to "Edit my burger", "#" %>
-  <% else %>
-    <h1>Add a new booking</h1>
-    <%= simple_form_for [@burger, @booking] do |f| %>
-      <%= f.input	 :start_date, as: :date %>
-      <%= f.input	 :end_date, as: :date %>
-      <%= f.submit "Submit booking" %>
-    <% end %>
+  <% unless @burger.user == current_user %>
+    <div class="show-page-card background-white">
+      <h2>Book Now</h2>
+      <%= simple_form_for [@burger, @booking] do |f| %>
+        <%= f.input	 :start_date, as: :date, order: [:day, :month, :year]  %>
+        <%= f.input	 :end_date, as: :date, order: [:day, :month, :year] %>
+        <%= f.submit "Submit booking", class: "button-book" %>
+      <% end %>
+    </div>
   <% end %>
 <% else %>
   <p>You need to be logged in to make a booking</p>

@@ -1,50 +1,49 @@
 <% user = User.find(current_user[:id]) %>
 
-<div class="container">
+<div class="container my-4">
+  <h1>
+    <%= cl_image_tag(user.photo.key, :width=>300, :height=>300, :gravity=>"faces", :crop=>"thumb", alt: "profile picture of #{user.username}", class: "avatar-large d-inline avatar-shadow") %>
+    <span class="profile-shadow"><%= "#{user.username}'s profile" %></span>
+  </h1>
 
-    <h1>
-
-          <%= cl_image_tag(user.photo.key,
-                          alt: "profile picture of #{user.username}",
-                          class: "avatar d-inline mr-6") %>
-
-          <%= "#{user.username}'s profile" %>
-
-    </h1>
-
-    <h3 class="mt-5">All your burgers</h3>
+  <div class="card border-0 rounded-4 p-4 shadow-sm mb-3 mt-4">
+    <h3>Your burgers</h3>
 
     <% if user.burgers.size >= 1 %>
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-3 mt-4">
-            <% user.burgers.each do |burger| %>
-              <div class="col">
-                <div class="card h-100 rounded-3 border-0 shadow position-relative">
-                  <%= link_to cl_image_tag(burger.photos[0].key, alt: 'photo of the burger', class: 'card-img-top rounded-top'), burger_path(burger) %>
-                  <div class="rating-overlay">
-                    <% if burger.reviews.count != 0 %>
-                      <small class="bg-light rounded-circle p-3 px-2"><%= burger.average_rating %> <i class="fa-solid fa-star fa-2xs"></i></small>
-                    <% else %>
-                      <small class="bg-light rounded-circle p-3 px-1">New <i class="fa-solid fa-star fa-2xs"></i></small>
-                    <% end %>
-                  </div>
-                  <div class="card-body">
-                    <h5 class="card-title"><%= burger.name %></h5>
-                    <p class="card-text fw-light align-bottom"><%= burger.description %></p>
-                  </div>
-                  <div class="card-footer d-flex justify-content-end border-0">
-                    <p class="card-text pb-0">$$$</p>
-                  </div>
-                </div>
-              <%= link_to "Delete burger", burger_path(burger), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete '#{burger}'"} %>
-              </div>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-3 mt-4">
 
-            <% end %>
+        <% user.burgers.each do |burger| %>
+          <div class="col">
+            <div class="card h-100 rounded-3 border-0 shadow position-relative">
+              <%= link_to cl_image_tag(burger.photos[0].key, :width=>300, :height=>300, :crop=>"thumb", alt: 'photo of the burger', class: 'card-img-top rounded-top'), burger_path(burger) %>
+              <div class="rating-overlay">
+
+                <% if burger.reviews.count != 0 %>
+                  <small class="bg-light rounded-circle p-3 px-2"><%= burger.average_rating %> <i class="fa-solid fa-star fa-2xs"></i></small>
+                <% else %>
+                  <small class="bg-light rounded-circle p-3 px-1">New <i class="fa-solid fa-star fa-2xs"></i></small>
+                <% end %>
+
+              </div>
+              <div class="card-body">
+                <h5 class="card-title"><%= burger.name %></h5>
+                <p class="card-text fw-light align-bottom"><%= burger.description %></p>
+              </div>
+              <div class="card-footer d-flex justify-content-between border-0">
+                <%= link_to "Delete burger", burger_path(burger), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete '#{burger}'"}, class: 'text-danger' %>
+                <p class="card-text pb-0">$$$</p>
+              </div>
+            </div>
           </div>
+        <% end %>
+      </div>
     <% else %>
         <p>You haven't created a burger yet.</p>
     <% end %>
+  </div>
 
-    <h3 class="mt-5">All your bookings</h3>
+  <div class="card border-0 rounded-4 p-4 shadow-sm my-3">
+    <h3>Your bookings</h3>
         <% if user.bookings.size >= 1 %>
           <ul>
             <% user.bookings.each do |booking| %>
@@ -59,68 +58,72 @@
         <% else %>
           <p>You don't have any bookings yet.</p></li>
         <% end %>
+  </div>
+    <div class="card border-0 rounded-4 p-3 shadow-sm my-3">
+      <h3>Your reviews</h3>
 
+      <% if user.reviews.size >= 1 %>
+          <ul>
+            <% user.reviews.each do |review| %>
+              <li>
+                <p>Rating: <%= "#{review.rating} / 5" %></p>
+                <p>Content: <%= "#{review.content}" %></p>
+                <%= link_to "Delete",
+                    burger_review_path(review.burger, review),
+                    data: {turbo_method: :delete, turbo_confirm: "Really delete this review?"}%>
 
-    <h3 class="mt-5">All your reviews</h3>
+              </li>
+            <% end %>
+          </ul>
+      <% else %>
+        <p>You don't have any reviews yet.</p>
+      <% end %>
+    </div>
+    <div class="card border-0 rounded-4 p-4 shadow-sm my-3">
+      <h3>Edit <%= resource_name.to_s.humanize %></h3>
 
-    <% if user.reviews.size >= 1 %>
-        <ul>
-          <% user.reviews.each do |review| %>
-            <li>
-              <p>Rating: <%= "#{review.rating} / 5" %></p>
-              <p>Content: <%= "#{review.content}" %></p>
-              <%= link_to "Delete",
-                  burger_review_path(review.burger, review),
-                  data: {turbo_method: :delete, turbo_confirm: "Really delete this review?"}%>
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= f.error_notification %>
 
-            </li>
+        <div class="form-inputs">
+          <%= f.input :username, required: true, autofocus: true %>
+          <%= f.input :email, required: true, autofocus: true %>
+
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
           <% end %>
-        </ul>
-    <% else %>
-      <p>You don't have any reviews yet.</p>
-    <% end %>
 
-    <h3 class="mt-5">Edit <%= resource_name.to_s.humanize %></h2>
+          <%= f.input :password,
+                      hint: "leave it blank if you don't want to change it",
+                      required: false,
+                      input_html: { autocomplete: "new-password" } %>
+          <%= f.input :password_confirmation,
+                      required: false,
+                      input_html: { autocomplete: "new-password" } %>
+          <%= f.input :current_password,
+                      hint: "we need your current password to confirm your changes",
+                      required: true,
+                      input_html: { autocomplete: "current-password" } %>
 
-    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-      <%= f.error_notification %>
+          <%= f.input :photo,
+                        label: "Your profile picture",
+                        as: :file,
+                        required: false %>
+        </div>
 
-      <div class="form-inputs">
-        <%= f.input :username, required: true, autofocus: true %>
-        <%= f.input :email, required: true, autofocus: true %>
+        <div class="form-actions">
+          <%= f.button :submit, "Update" %>
+        </div>
+      <% end %>
+    </div>
+    <div class="card rounded-4 p-4 shadow-sm bg-transparent my-3">
+      <h5>Cancel my account</h5>
 
-        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-          <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
-        <% end %>
-
-        <%= f.input :password,
-                    hint: "leave it blank if you don't want to change it",
-                    required: false,
-                    input_html: { autocomplete: "new-password" } %>
-        <%= f.input :password_confirmation,
-                    required: false,
-                    input_html: { autocomplete: "new-password" } %>
-        <%= f.input :current_password,
-                    hint: "we need your current password to confirm your changes",
-                    required: true,
-                    input_html: { autocomplete: "current-password" } %>
-
-        <%= f.input :photo,
-                      label: "Your profile picture",
-                      as: :file,
-                      required: false %>
+      <div>
+      <p>Unhappy with our services?</p>
+      <%= button_to "Cancel your account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: 'btn btn-sm btn-outline-danger' %>
       </div>
-
-      <div class="form-actions">
-        <%= f.button :submit, "Update" %>
-      </div>
-    <% end %>
-
-
-    <h3>Cancel my account</h3>
-
-    <div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
-
+    </div>
     <%= link_to "Back", :back %>
 
 </div>

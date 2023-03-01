@@ -1,12 +1,14 @@
 class BurgersController < ApplicationController
   before_action :current_burger, only: %i[edit update show destroy]
+  before_action :can_review?, only: [:show]
 
   def index
     @burgers = Burger.all
   end
-  
+
   def show
     @booking = Booking.new
+    @review = Review.new
   end
 
 
@@ -53,6 +55,10 @@ class BurgersController < ApplicationController
 
   def burger_params
     params.require(:burger).permit(:name, :description, :user_id, photos: [])
+  end
+
+  def can_review?
+    @can_review = Booking.where(user_id: current_user.id, burger_id: @burger.id ).any? && Review.where(user_id: current_user.id, burger_id: @burger.id ).empty?
   end
 
 end

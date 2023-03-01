@@ -17,7 +17,6 @@
       </div>
 
       <h3>Reviews for <%= @burger.name %></h3>
-
         <% @burger.reviews.each do |review| %>
           <div class="container">
             <h4><%= review.rating %></h4>
@@ -41,3 +40,7 @@
 
 <%# CODE ADDED BY LOIC. REMOVE THIS LINE %>
 <%= render "booking" %>
+
+  <% if @can_review %>
+      <%= link_to "Rate your experience", new_burger_review_path(@burger, @review) %>
+  <% end %>

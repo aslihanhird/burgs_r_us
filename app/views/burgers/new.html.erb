@@ -1,13 +1,12 @@
-<div class="container">
-    <h1>Add a new burger</h1>
-    <%= simple_form_for(@burger) do |f| %>
-      <%= f.input :name %>
-      <%= f.input :description %>
-      <%= f.input :photos,
-                  label: "One or more photos of your burger 🍔",
-                  as: :file,
-                  input_html: { multiple: true }  %>
-      <%= f.button :submit, "Add your burger" %>
-    <% end %>
-
+<div class="container py-5 flex-grow-1">
+  <h1>Add a new burger</h1>
+  <%= simple_form_for(@burger) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.input :photos,
+                label: "One or more photos of your burger 🍔",
+                as: :file,
+                input_html: { multiple: true }  %>
+    <%= f.button :submit, "Add your burger" %>
+  <% end %>
 </div>

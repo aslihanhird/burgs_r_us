@@ -1,0 +1,41 @@
+form {
+  input, textarea {
+    background-color: transparent;
+    background-image: linear-gradient(150deg, rgba(255, 190, 173, 0.05), white, white,  rgba(112, 135, 247, 0.05));
+    height: 3em;
+    border-radius: 16px !important;
+    transition: background-image 1s;
+  }
+  textarea {
+    overflow: auto;
+  }
+}
+
+
+input:hover {
+  background-image: linear-gradient(150deg, rgba(255, 190, 173, 0.15), white, white,  rgba(112, 135, 247, 0.15));
+}
+
+input::file-selector-button {
+  background-color: transparent !important;
+  height: 3em;
+}
+
+
+input[type="submit"] {
+  background-image: none;
+  width: 100%;
+  margin: 16px 0;
+  background-color: rgb(112, 135, 247);
+  font-weight: bold;
+  color: white;
+}
+
+input[type="submit"]:hover {
+  color: white;
+  background-color: #516DF5
+}
+
+.background-white {
+  background-color: #FCFCFC;
+}

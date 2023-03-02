@@ -4,7 +4,8 @@ class Burger < ApplicationRecord
   has_many :reviews, dependent: :destroy
 
   has_many_attached :photos
-
+  validates :name, presence: true
+  validates :description, presence: true
   validate :min_photo_amount, :max_photo_amount
 
   def average_rating
@@ -25,5 +26,4 @@ class Burger < ApplicationRecord
   def max_photo_amount
     errors.add(:photos, "A burger can only have a maximum of 5 pictures.") if photos.size > 5
   end
-
 end

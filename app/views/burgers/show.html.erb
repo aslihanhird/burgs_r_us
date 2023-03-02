@@ -15,7 +15,19 @@
         <h1><%= @burger.name %></h1>
         <p><%= @burger.description %></p>
       </div>
-      <%= render "booking" %>
+
+      <%= render "burgers/booking" %>
+
+      <ul>
+        <% @burger.bookings.each do |booking| %>
+          <li>
+            <p>Booked by: <%= booking.user.username %></p>
+            <p>Start: <%= booking.start_date %></p>
+            <p>End: <%= booking.end_date %></p>
+          </li>
+        <% end %>
+      </ul>
+
       <%# EDIT & DELETE LINKS, ONLY SHOW IF USER IS THE OWNER OF THE BURGER %>
 
       <% if current_user == @burger.user %>
@@ -54,5 +66,8 @@
         <p class="text-muted">No reviews yet</p>
       <% end %>
     </div>
+
+
+
   </div>
 </div>

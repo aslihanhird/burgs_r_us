@@ -12,12 +12,6 @@
 
   <body class="d-flex flex-column">
     <%= render 'shared/navbar' %>
-    <%# Only flashes when a user tries to delete a burger that he isn't supposed to %>
-      <% flash.each do |type, msg| %>
-        <div class="alert alert-danger">
-          <%= msg %>
-        </div>
-      <% end %>
     <%= yield %>
     <%= render "shared/flashes" %>
     <%= render 'shared/footer' %>

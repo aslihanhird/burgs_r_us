@@ -69,7 +69,7 @@
     <% end %>
   </div>
 
-  <div class="card border-0 rounded-4 p-3 shadow-sm my-3">
+  <div class="card border-0 rounded-4 p-4 shadow-sm my-3">
     <h2>Your reviews</h2>
     <% if user.reviews.size >= 1 %>
       <div class="row row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-3 mt-2">
@@ -102,39 +102,40 @@
 
   <div class="card border-0 rounded-4 p-4 shadow-sm my-3">
     <h2>Edit <%= resource_name.to_s.humanize %></h2>
+    <div class="mt-2">
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= f.error_notification %>
 
-    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-      <%= f.error_notification %>
+        <div class="form-inputs">
+          <%= f.input :username, required: true, autofocus: true %>
+          <%= f.input :email, required: true, autofocus: true %>
 
-      <div class="form-inputs">
-        <%= f.input :username, required: true, autofocus: true %>
-        <%= f.input :email, required: true, autofocus: true %>
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+          <% end %>
 
-        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-          <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
-        <% end %>
+          <%= f.input :password,
+                      hint: "leave it blank if you don't want to change it",
+                      required: false,
+                      input_html: { autocomplete: "new-password" } %>
+          <%= f.input :password_confirmation,
+                      required: false,
+                      input_html: { autocomplete: "new-password" } %>
+          <%= f.input :current_password,
+                      hint: "we need your current password to confirm your changes",
+                      required: true,
+                      input_html: { autocomplete: "current-password" } %>
 
-        <%= f.input :password,
-                    hint: "leave it blank if you don't want to change it",
-                    required: false,
-                    input_html: { autocomplete: "new-password" } %>
-        <%= f.input :password_confirmation,
-                    required: false,
-                    input_html: { autocomplete: "new-password" } %>
-        <%= f.input :current_password,
-                    hint: "we need your current password to confirm your changes",
-                    required: true,
-                    input_html: { autocomplete: "current-password" } %>
-
-        <%= f.input :photo,
-                      label: "Your profile picture",
-                      as: :file,
-                      required: false %>
-      </div>
-      <div class="form-actions">
-        <%= f.button :submit, "Update" %>
-      </div>
-    <% end %>
+          <%= f.input :photo,
+                        label: "Your profile picture",
+                        as: :file,
+                        required: false %>
+        </div>
+        <div class="form-actions">
+          <%= f.button :submit, "Update" %>
+        </div>
+      <% end %>
+    </div>
   </div>
   <div class="card rounded-4 p-4 shadow-sm bg-transparent my-3">
     <h5>Cancel my account</h5>

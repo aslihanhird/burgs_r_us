@@ -1,8 +1,20 @@
-<%= form_with url: root_path, method: :get, class: "" do %>
-  <%= text_field_tag :query,
-    params[:query],
-    class: "form-control",
-    placeholder: "Find The Perfect Burg"
-  %>
-  <%= submit_tag "Search", class: "btn btn-primary" %>
-<% end %>
+<div class="row d-flex justify-content-center">
+  <div class="col-sm-0 col-lg-2"></div>
+  <div class="col-sm-12 col-lg-8 row">
+    <%= form_with url: root_path, method: :get, class: "" do %>
+      <div class="row align-items-center">
+        <div class="col-8">
+          <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            placeholder: "Burgs ahoy..."
+          %>
+        </div>
+        <div class="col-4">
+          <%= submit_tag "Search", class: "btn btn-primary" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-sm-0 col-lg-2"></div>
+</div>

@@ -6,6 +6,10 @@ class BurgersController < ApplicationController
     if params[:query].present?
       sql_query = "name @@ :query OR description @@ :query"
       @burgers = Burger.where(sql_query, query: "%#{params[:query]}%")
+      if @burgers.present? == false
+        redirect_to root_path
+        flash.notice = "#{params[:query]} does not exists"
+      end
     else
       @burgers = Burger.all
     end

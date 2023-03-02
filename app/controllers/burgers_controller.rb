@@ -3,7 +3,12 @@ class BurgersController < ApplicationController
   before_action :can_review?, only: [:show]
 
   def index
-    @burgers = Burger.all
+    if params[:query].present?
+      sql_query = "name @@ :query OR description @@ :query"
+      @burgers = Burger.where(sql_query, query: "%#{params[:query]}%")
+    else
+      @burgers = Burger.all
+    end
   end
 
   def show

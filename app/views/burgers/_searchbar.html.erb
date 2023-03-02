@@ -1,0 +1,8 @@
+<%= form_with url: root_path, method: :get, class: "" do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "form-control",
+    placeholder: "Find The Perfect Burg"
+  %>
+  <%= submit_tag "Search", class: "btn btn-primary" %>
+<% end %>

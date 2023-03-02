@@ -8,8 +8,6 @@
           <%= f.input	 :end_date, as: :date, order: [:day, :month, :year] %>
           <%= f.submit "Submit booking", class: "button-book" %>
 
-          <%= @booking.errors[:minimum_one_day?] %>
-
         <% end %>
       </div>
     <% end %>

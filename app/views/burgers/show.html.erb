@@ -15,7 +15,7 @@
         <h1><%= @burger.name %></h1>
         <p><%= @burger.description %></p>
       </div>
-      
+      <%= render "booking" %>
       <%# EDIT & DELETE LINKS, ONLY SHOW IF USER IS THE OWNER OF THE BURGER %>
 
       <% if current_user == @burger.user %>
@@ -32,8 +32,9 @@
     <div class="col card rounded-4 border-0 p-4 shadow-sm mt-3 me-0">
       <div class="d-flex justify-content-between align-items-center">
         <h2>Reviews</h2>
-        <%= link_to "Review", new_burger_review_path(@burger), class: "btn btn-primary rounded-4 text-light fw-bold" %>
-      <% end %>
+        <% if @can_review %>
+          <%= link_to "Review", new_burger_review_path(@burger), class: "btn btn-primary rounded-4 text-light fw-bold" %>
+        <% end %>
       </div>
       <% @burger.reviews.each do |review| %>
         <div class="review-item">

@@ -3,9 +3,10 @@ Rails.application.routes.draw do
   root to: "burgers#index"
   devise_for :users
   resources :burgers, only: %i[show new create edit update destroy] do
-    resources :reviews, only: %i[new create destroy]
+    resources :reviews, only: %i[new create]
     resources :bookings, only: %i[create show]
   end
+  resources :reviews, only: %i[edit update destroy]
 
   resources :bookings, only: %i[index]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

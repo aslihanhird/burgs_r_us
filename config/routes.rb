@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :bookings, only: %i[index]
 
   get "bookings/:id/confirmed", to: "bookings#confirmed", as: "booking_confirmed"
+  get "profile/:username", to: "pages#profile", as: "profile"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

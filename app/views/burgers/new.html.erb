@@ -1,9 +1,9 @@
 <div class="container my-4">
   <div class="row">
-    <div class="col-8 d-flex align-content-center">
-      <%= image_tag "veggie_burg.png", width: "100%", style:"object-fit: cover", class: "rounded-4" %>
+    <div class="col-sm-4 col-lg-8 d-flex align-content-center">
+      <%= image_tag "veggie_burg.png", width: "100%", style:"object-fit: cover", class: "rounded-4 hidable" %>
     </div>
-    <div class="col-4 p-4 background-white rounded-4 shadow-sm">
+    <div class="col-sm-8 col-lg-4 p-4 background-white rounded-4 shadow-sm">
       <h1>Add a new burger</h1>
       <%= simple_form_for(@burger) do |f| %>
         <%= f.input :name %>

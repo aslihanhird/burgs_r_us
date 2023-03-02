@@ -1,9 +1,9 @@
 <div class="container my-5">
   <div class="row">
-    <div class="col-8 d-flex align-content-center">
-      <%= image_tag "big_burg.png", width: "100%", style:"object-fit: cover" %>
+    <div class="col-sm-4 col-lg-8 d-flex align-content-center">
+      <%= image_tag "big_burg.png", width: "100%", style:"object-fit: cover", class: "rounded-4 hidable" %>
     </div>
-    <div class="col-4 p-4 background-white">
+    <div class="col-sm-8 col-lg-4 p-4 background-white rounded-4 shadow-sm">
       <h2>Sign up</h2>
 
           <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), data: {turbo: false}) do |f| %>

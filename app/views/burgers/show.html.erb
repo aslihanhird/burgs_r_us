@@ -41,6 +41,7 @@
           <p class="review-item-rating"><%= review.rating %></p>
           <p><%= review.content %></p>
         </div>
+      <%= link_to "edit", edit_review_path(review), class: "btn btn-primary rounded-4 text-light fw-bold" %>
       <% end %>
     </div>
   </div>

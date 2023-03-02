@@ -64,7 +64,7 @@ class BurgersController < ApplicationController
   end
 
   def can_review?
-    @can_review = Booking.where(user_id: current_user.id, burger_id: @burger.id ).any? && Review.where(user_id: current_user.id, burger_id: @burger.id ).empty? && booking_ended?
+    @can_review = user_signed_in? && Booking.where(user_id: current_user.id, burger_id: @burger.id ).any? && Review.where(user_id: current_user.id, burger_id: @burger.id ).empty? && booking_ended?
   end
 
   def booking_ended?

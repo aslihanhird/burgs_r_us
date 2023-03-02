@@ -17,11 +17,7 @@
       </div>
 
       <%= render "burgers/booking" %>
-
-      <ul>
-
-      </ul>
-
+      
       <%# EDIT & DELETE LINKS, ONLY SHOW IF USER IS THE OWNER OF THE BURGER %>
 
       <% if current_user == @burger.user %>
@@ -59,17 +55,21 @@
         <% end %>
       </div>
       <% if @burger.reviews.count != 0 %>
-        <% @burger.reviews.each do |review| %>
+        <% @burger.reviews.reverse_each do |review| %>
           <div class="review-item justify-content-between">
             <div class="d-flex align-items-center">
             <p class="review-item-rating"><%= review.rating %> <i class="fa-solid fa-star fa-2xs"></i></p>
             <p class="fst-italic w-50 flex-fill"><%= review.content %></p>
             </div>
-            <div class="p-3">
-              <%= link_to edit_review_path(review) do %>
-                <p class="text-primary"><i class="fa-solid fa-pen"></i></p>
-              <% end %>
-            </div>
+
+            <% if current_user == review.user %>
+              <div class="p-3">
+                <%= link_to edit_review_path(review) do %>
+                  <p class="text-primary"><i class="fa-solid fa-pen"></i></p>
+                <% end %>
+              </div>
+            <% end %>
+
           </div>
         <% end %>
       <% else %>

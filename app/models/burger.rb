@@ -25,5 +25,4 @@ class Burger < ApplicationRecord
   def max_photo_amount
     errors.add(:photos, "A burger can only have a maximum of 5 pictures.") if photos.size > 5
   end
-
 end

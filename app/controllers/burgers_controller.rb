@@ -18,6 +18,7 @@ class BurgersController < ApplicationController
   def show
     @booking = Booking.new
     @review = Review.new
+
   end
 
   def new
@@ -55,6 +56,14 @@ class BurgersController < ApplicationController
     end
 
     redirect_to root_path
+  end
+
+  def delete_picture
+    burger = Burger.find(params[:burger_id].to_i)
+    photo = burger.photos[params[:picture_index].to_i]
+    photo.purge
+    flash.alert = "Picture deleted succesfully! ✅"
+    redirect_to request.referer
   end
 
   private

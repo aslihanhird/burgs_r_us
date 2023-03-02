@@ -13,7 +13,7 @@
     <h2>Your burgers</h2>
     <% if user.burgers.size >= 1 %>
       <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-3 mt-2">
-        <% user.burgers.each do |burger| %>
+        <% user.burgers.reverse_each do |burger| %>
 
           <div class="col">
             <div class="card h-100 rounded-3 border-0 shadow position-relative">
@@ -47,7 +47,7 @@
     <h2>Your bookings</h2>
     <% if user.bookings.size >= 1 %>
       <div class="row row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-3 mt-2">
-        <% user.bookings.each do |booking| %>
+        <% user.bookings.reverse_each do |booking| %>
 
           <div class="col">
             <div class="card h-100 border-0 rounded-3 shadow">
@@ -75,7 +75,7 @@
     <h2>Your reviews</h2>
     <% if user.reviews.size >= 1 %>
       <div class="row row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-3 mt-2">
-        <% user.reviews.each do |review| %>
+        <% user.reviews.reverse_each do |review| %>
           <div class="col">
             <div class="card h-100 border-0 rounded-3 shadow">
               <div class="card-body">

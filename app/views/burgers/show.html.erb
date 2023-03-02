@@ -48,7 +48,7 @@
         <% end %>
       </div>
       <% if @burger.reviews.count != 0 %>
-        <% @burger.reviews.each do |review| %>
+        <% @burger.reviews.reverse_each do |review| %>
           <div class="review-item justify-content-between">
             <div class="d-flex align-items-center">
             <p class="review-item-rating"><%= review.rating %> <i class="fa-solid fa-star fa-2xs"></i></p>

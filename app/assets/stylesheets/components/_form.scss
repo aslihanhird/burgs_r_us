@@ -29,6 +29,7 @@ input[type="submit"] {
   background-color: rgb(112, 135, 247);
   font-weight: bold;
   color: white;
+  border: none;
 }
 
 input[type="submit"]:hover {
@@ -43,4 +44,11 @@ input[type="submit"]:hover {
 .button-book {
   border: none;
   background-color: #FF5F38 !important;
+}
+
+
+@media (max-width: 575px) {
+  .hidable {
+    display: none ;
+  }
 }

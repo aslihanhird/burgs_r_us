@@ -3,7 +3,12 @@ class BurgersController < ApplicationController
   before_action :can_review?, only: [:show]
 
   def index
-    @burgers = Burger.all
+    if params[:query].present?
+      sql_query = "name @@ :query OR description @@ :query"
+      @burgers = Burger.where(sql_query, query: "%#{params[:query]}%")
+    else
+      @burgers = Burger.all
+    end
   end
 
   def show
@@ -59,8 +64,12 @@ class BurgersController < ApplicationController
   end
 
   def can_review?
-    if current_user
-      @can_review = Booking.where(user_id: current_user.id, burger_id: @burger.id ).any? && Review.where(user_id: current_user.id, burger_id: @burger.id ).empty?
-    end
+    @can_review = user_signed_in? && Booking.where(user_id: current_user.id, burger_id: @burger.id ).any? && Review.where(user_id: current_user.id, burger_id: @burger.id ).empty? && booking_ended?
+  end
+
+  def booking_ended?
+    booking = Booking.where(user_id: current_user.id, burger_id: @burger.id).last
+    days = (Date.today - booking.end_date).to_i
+    days >= 0
   end
 end

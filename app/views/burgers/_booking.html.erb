@@ -1,15 +1,17 @@
-<% if user_signed_in? %>
-  <% unless @burger.user == current_user %>
-    <div class="show-page-card background-white">
-      <h2>Book Now</h2>
-      <%= simple_form_for [@burger, @booking] do |f| %>
-        <%= f.input	 :start_date, as: :date, order: [:day, :month, :year]  %>
-        <%= f.input	 :end_date, as: :date, order: [:day, :month, :year] %>
-        <%= f.submit "Submit booking", class: "button-book" %>
-      <% end %>
-    </div>
+<div class="card bg-info bg-opacity-10 border-0 rounded-4 p-4">
+  <% if user_signed_in? %>
+    <% unless @burger.user == current_user %>
+      <div class="">
+        <h2>Book now!</h2>
+        <%= simple_form_for [@burger, @booking] do |f| %>
+          <%= f.input	 :start_date, as: :date, order: [:day, :month, :year]  %>
+          <%= f.input	 :end_date, as: :date, order: [:day, :month, :year] %>
+          <%= f.submit "Submit booking", class: "button-book" %>
+        <% end %>
+      </div>
+    <% end %>
+  <% else %>
+    <p class="text-secondary">You need to be logged in to make a booking</p>
+    <%= link_to "Login", new_user_session_path, class: "btn btn-outline-info rounded-4" %>
   <% end %>
-<% else %>
-  <p>You need to be logged in to make a booking</p>
-  <button><%= link_to "Login", new_user_session_path %></button>
-<% end %>
+</div>

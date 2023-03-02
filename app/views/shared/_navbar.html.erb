@@ -13,11 +13,11 @@
               <ul class="navbar-nav me-auto">
                     <% unless current_user %>
                       <li class="nav-item">
-                        <%= link_to "Create an account", new_user_registration_path %>
+                        <%= link_to "Create an account", new_user_registration_path, class: "btn btn-outline-dark rounded-4 mx-1" %>
                       </li>
 
                       <li class="nav-item">
-                        <%= link_to "Log in",  new_user_session_path %>
+                        <%= link_to "Log in",  new_user_session_path, class: "btn btn-outline-dark rounded-4 mx-1" %>
                       </li>
                     <% end %>
 

@@ -1,0 +1,50 @@
+.show-page-main {
+  h1 {
+    color: #322E2A;
+  }
+  p {
+    padding: 12px 0;
+  }
+}
+
+.show-page-card {
+  padding: 16px;
+  border-radius: 4px;
+  margin: 12px 0;
+  h2 {
+    color: #322E2A;
+    margin-bottom: 20px;
+  }
+}
+
+.review-item {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  background-color: #F4F4F4;
+  border-radius: 4px;
+  margin-top: 8px;
+  p {
+    margin: 0;
+  }
+}
+
+.review-item-rating {
+  font-size: 2em;
+  padding-right: 16px;
+  color: #7087F7;
+}
+
+.button-main {
+  padding: 8px 12px;
+  border-radius: 16px;
+  background-color: rgb(112, 135, 247);
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+}
+
+.button-main:hover {
+  color: white;
+  background-color: #516DF5;
+}

@@ -11,36 +11,34 @@
       </div>
     </div>
     <div class="col pb-4">
-      <div>
+      <div class="show-page-main">
         <h1><%= @burger.name %></h1>
         <p><%= @burger.description %></p>
       </div>
+      
+      <%# EDIT & DELETE LINKS, ONLY SHOW IF USER IS THE OWNER OF THE BURGER %>
 
-      <h3>Reviews for <%= @burger.name %></h3>
-        <% @burger.reviews.each do |review| %>
-          <div class="container">
-            <h4><%= review.rating %></h4>
-            <p><%= review.content %></p>
-          </div>
-        <% end %>
+      <% if current_user == @burger.user %>
 
-        <%# EDIT & DELETE LINKS, ONLY SHOW IF USER IS THE OWNER OF THE BURGER %>
+        <%= link_to "Delete this burger", burger_path(@burger), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this burger?"} %>
 
-        <% if current_user == @burger.user %>
+        <%= link_to "Edit this burger", edit_burger_path(@burger) %>
 
-          <%= link_to "Delete this burger", burger_path(@burger), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this burger?"} %>
-
-          <%= link_to "Edit this burger", edit_burger_path(@burger) %>
-
-        <% end %>
+      <% end %>
 
     </div>
   </div>
-</div>
-
-<%# CODE ADDED BY LOIC. REMOVE THIS LINE %>
-<%= render "booking" %>
-
-  <% if @can_review %>
-      <%= link_to "Rate your experience", new_burger_review_path(@burger, @review) %>
-  <% end %>
+  <div class="show-page-card background-white">
+    <div class="d-flex justify-content-between align-items-center">
+      <h2>Reviews</h2>
+      <% if @can_review %>
+        <%= link_to "Review", new_burger_review_path(@burger), class: "button-main" %>
+      <% end %>
+    </div>
+    <% @burger.reviews.each do |review| %>
+      <div class="review-item">
+        <p class="review-item-rating"><%= review.rating %></p>
+        <p><%= review.content %></p>
+      </div>
+    <% end %>
+  </div>

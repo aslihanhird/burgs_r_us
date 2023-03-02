@@ -5,7 +5,11 @@
       <%= simple_form_for [@burger, @booking] do |f| %>
         <%= f.input	 :start_date, as: :date, order: [:day, :month, :year] %>
         <%= f.input	 :end_date, as: :date, order: [:day, :month, :year] %>
-        <%= f.submit "Submit booking", class: "button-book" %>
+        <button type="submit" class="btn btn-info rounded-4 text-light fw-bold w-100" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Submit booking
+        </button>
+        <%= render 'burgers/booking_modal', params[@booking_new] %>
+
 
       <% end %>
     </div>
@@ -14,3 +18,6 @@
   <p class="text-secondary">You need to be logged in to make a booking</p>
   <%= link_to "Login", new_user_session_path, class: "btn btn-outline-info rounded-4" %>
 <% end %>
+
+
+<!-- Modal -->

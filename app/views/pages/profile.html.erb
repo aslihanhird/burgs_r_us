@@ -10,7 +10,7 @@
   <div class="card border-0 rounded-4 p-4 shadow-sm mb-3 mt-4">
     <h2>Your burgers</h2>
     <% if @profile.burgers.size >= 1 %>
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-3 mt-2">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-3 p-3">
         <% @profile.burgers.reverse_each do |burger| %>
 
           <div class="col">
@@ -44,7 +44,7 @@
   <div class="card border-0 rounded-4 p-4 shadow-sm my-3">
     <h2>Your bookings</h2>
     <% if @profile.bookings.size >= 1 %>
-      <div class="row row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-3 mt-2">
+      <div class="row row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-3 p-3">
         <% @profile.bookings.reverse_each do |booking| %>
 
           <div class="col">
@@ -72,7 +72,7 @@
   <div class="card border-0 rounded-4 p-4 shadow-sm my-3">
     <h2>Your reviews</h2>
     <% if @profile.reviews.size >= 1 %>
-      <div class="row row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-3 mt-2">
+      <div class="row row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-3 p-3">
         <% @profile.reviews.reverse_each do |review| %>
           <div class="col">
             <div class="card h-100 border-0 rounded-3 shadow">

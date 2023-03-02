@@ -87,9 +87,9 @@
               </div>
               <div class="card-footer d-flex justify-content-between border-0">
                 <%= link_to "Delete",
-                  burger_review_path(review.burger, review),
+                  review_path(review),
                   data: {turbo_method: :delete, turbo_confirm: "Really delete this review?"},
-                  class: "text-danger"%>
+                  class: "text-danger" %>
               </div>
             </div>
           </div>

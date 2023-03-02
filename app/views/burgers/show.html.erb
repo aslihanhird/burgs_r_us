@@ -17,7 +17,7 @@
       </div>
 
       <%= render "burgers/booking" %>
-
+      
       <%# EDIT & DELETE LINKS, ONLY SHOW IF USER IS THE OWNER OF THE BURGER %>
 
       <% if current_user == @burger.user %>
@@ -26,9 +26,26 @@
           <%= link_to "Delete", burger_path(@burger), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this burger?"}, class: "col button-main button-warning text-center" %>
         </div>
       <% end %>
-
     </div>
   </div>
+
+  <% if @burger.bookings.count != 0 %>
+    <div class="row g-3 mt-3">
+      <div class="col card rounded-4 border-0 p-4 shadow-sm mt-3">
+        <h2>Current bookings</h2>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 p-3">
+          <% @burger.bookings.each do |booking| %>
+            <div class="card bg-info bg-opacity-10 border-0 rounded-4 p-4 text-center shadow-sm">
+              <h3><%= booking.user.username %>'s booking</h3>
+              <h4 class="text-info fs-5 p-3 mb-0"><%= booking.start_date.day %>/<%= booking.start_date.month %>/<%= booking.start_date.year %>
+              - <%= booking.end_date.day %>/<%= booking.end_date.month %>/<%= booking.end_date.year %></h4>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
   <div class="row g-3 mt-3">
     <div class="col card rounded-4 border-0 p-4 shadow-sm mt-3">
       <div class="d-flex justify-content-between align-items-center">
@@ -42,7 +59,7 @@
           <div class="review-item justify-content-between">
             <div class="d-flex align-items-center">
             <p class="review-item-rating"><%= review.rating %> <i class="fa-solid fa-star fa-2xs"></i></p>
-            <p class="fst-italic"><%= review.content %></p>
+            <p class="fst-italic w-50 flex-fill"><%= review.content %></p>
             </div>
 
             <% if current_user == review.user %>

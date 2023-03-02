@@ -23,8 +23,11 @@ class ReviewsController < ApplicationController
 
   def update
     @review = Review.find(params[:id])
-    @review.update(review_params)
-    redirect_to burger_path(@review.burger)
+    if @review.update(review_params)
+      redirect_to burger_path(@review.burger)
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy

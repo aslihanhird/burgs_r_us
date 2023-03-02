@@ -1,5 +1,4 @@
 class BookingsController < ApplicationController
-
   before_action :set_burger, only: %i[create show]
   before_action :all_bookings, only: %i[create]
 
@@ -7,10 +6,17 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @booking.user_id = current_user.id
     @booking.burger = @burger
+
     if @booking.save
       redirect_to burger_path(@burger)
     else
-      render :new, status: :unprocessable_entity
+      if @booking.errors.messages.present?
+        puts "---------------------"
+        p @booking.errors.messages[:base].first
+        puts "---------------------"
+      end
+      render 'burgers/show', status: :unprocessable_entity
+
     end
   end
 

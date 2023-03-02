@@ -4,7 +4,8 @@ class Burger < ApplicationRecord
   has_many :reviews, dependent: :destroy
 
   has_many_attached :photos
-
+  validates :name, presence: true
+  validates :description, presence: true
   validate :min_photo_amount, :max_photo_amount
 
   def average_rating

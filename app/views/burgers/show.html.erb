@@ -18,16 +18,6 @@
 
       <%= render "burgers/booking" %>
 
-      <ul>
-        <% @burger.bookings.each do |booking| %>
-          <li>
-            <p>Booked by: <%= booking.user.username %></p>
-            <p>Start: <%= booking.start_date %></p>
-            <p>End: <%= booking.end_date %></p>
-          </li>
-        <% end %>
-      </ul>
-
       <%# EDIT & DELETE LINKS, ONLY SHOW IF USER IS THE OWNER OF THE BURGER %>
 
       <% if current_user == @burger.user %>
@@ -54,11 +44,15 @@
             <p class="review-item-rating"><%= review.rating %> <i class="fa-solid fa-star fa-2xs"></i></p>
             <p class="fst-italic"><%= review.content %></p>
             </div>
-            <div class="p-3">
-              <%= link_to edit_review_path(review) do %>
-                <p class="text-primary"><i class="fa-solid fa-pen"></i></p>
-              <% end %>
-            </div>
+
+            <% if current_user == review.user %>
+              <div class="p-3">
+                <%= link_to edit_review_path(review) do %>
+                  <p class="text-primary"><i class="fa-solid fa-pen"></i></p>
+                <% end %>
+              </div>
+            <% end %>
+
           </div>
         <% end %>
       <% else %>

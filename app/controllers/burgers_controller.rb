@@ -58,7 +58,13 @@ class BurgersController < ApplicationController
   end
 
   def can_review?
-    @can_review = Booking.where(user_id: current_user.id, burger_id: @burger.id ).any? && Review.where(user_id: current_user.id, burger_id: @burger.id ).empty?
+    @can_review = Booking.where(user_id: current_user.id, burger_id: @burger.id ).any? && Review.where(user_id: current_user.id, burger_id: @burger.id ).empty? && booking_ended?
+  end
+
+  def booking_ended?
+    booking = Booking.where(user_id: current_user.id, burger_id: @burger.id).last
+    days = (Date.today - booking.end_date).to_i
+    days >= 0
   end
 
 end

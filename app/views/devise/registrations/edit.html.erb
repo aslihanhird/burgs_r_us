@@ -56,7 +56,9 @@
                   <h4><span class="text-success"><i class="fa-regular fa-circle-check fa-sm"></i></span>  <%= booking.burger.name %></h4>
                 </div>
                 <div class="text-center mt-4">
-                  <p class="fs-6"><i class="fa-solid fa-calendar-days fa-xs"></i>  <%= booking.start_date %> to <%= booking.end_date %></p>
+                  <p class="fs-6"><i class="fa-solid fa-calendar-days"></i>
+                  <%= booking.start_date.day %>/<%= booking.start_date.month %>/<%= booking.start_date.year %> to
+                  <%= booking.end_date.day %>/<%= booking.end_date.month %>/<%= booking.end_date.year %></p>
                 </div>
               </div>
             </div>

@@ -18,10 +18,8 @@
           <%= msg %>
         </div>
       <% end %>
-    <p class="alert"><%= alert %></p>
-    <p class="notice"><%= notice %></p>
     <%= yield %>
-
+    <%= render "shared/flashes" %>
     <%= render 'shared/footer' %>
   </body>
 </html>

@@ -1,6 +1,6 @@
 class Review < ApplicationRecord
-  belongs_to :burger, dependent: :destroy
-  belongs_to :user, dependent: :destroy
+  belongs_to :burger
+  belongs_to :user
 
   validates :content, presence: true
   validates :content, length: { minimum: 10 }

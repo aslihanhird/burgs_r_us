@@ -1,11 +1,22 @@
 class Burger < ApplicationRecord
   belongs_to :user
+
   has_many :bookings, dependent: :destroy
   has_many :reviews, dependent: :destroy
 
   has_many_attached :photos
+
+  # Name validations
   validates :name, presence: true
+
+  # Description validations
   validates :description, presence: true
+
+  # Price validations
+  validates :price, presence: true
+  validates :price, numericality: { minimum: 0 }
+
+  # Custom validations
   validate :min_photo_amount, :max_photo_amount
 
   def average_rating

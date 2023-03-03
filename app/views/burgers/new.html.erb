@@ -8,6 +8,7 @@
       <%= simple_form_for(@burger) do |f| %>
         <%= f.input :name %>
         <%= f.input :description %>
+        <%= f.input :price, label: "Price per day (€)" %>
         <%= f.input :photos,
                     label: "One or more photos of your burger 🍔",
                     as: :file,

@@ -18,7 +18,6 @@ class BurgersController < ApplicationController
   def show
     @booking = Booking.new
     @review = Review.new
-
   end
 
   def new
@@ -26,6 +25,7 @@ class BurgersController < ApplicationController
   end
 
   def create
+    # raise
     @burger = Burger.new(burger_params)
     @burger.user_id = current_user.id
 
@@ -41,7 +41,7 @@ class BurgersController < ApplicationController
   def update
     if @burger.update(burger_params)
       redirect_to edit_burger_path(@burger)
-      flash.notice = "Picture(s) added succesfully."
+      flash.notice = "Burger updated succesfully."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -73,7 +73,7 @@ class BurgersController < ApplicationController
   end
 
   def burger_params
-    params.require(:burger).permit(:name, :description, :user_id, photos: [])
+    params.require(:burger).permit(:name, :description, :user_id, :price, photos: [])
   end
 
   def can_review?

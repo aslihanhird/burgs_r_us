@@ -4,6 +4,12 @@
 
 import { application } from "./application"
 
+import CalendarController from "./calendar_controller"
+application.register("calendar", CalendarController)
+
+import CalendarDatePickerController from "./calendar_date_picker_controller"
+application.register("calendar-date-picker", CalendarDatePickerController)
+
 import BookingModalController from "./booking_modal_controller"
 application.register("booking-modal", BookingModalController)
 

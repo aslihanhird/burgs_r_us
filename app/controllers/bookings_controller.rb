@@ -7,7 +7,6 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @booking.user_id = current_user.id
     @booking.burger = @burger
-
     if @booking.save
       redirect_to burger_path(@booking.burger, booking_id: ["#{@booking.id}"])
       # render 'burgers/booking_modal'
@@ -40,7 +39,7 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:start_date, :end_date)
+    params.permit(:start_date, :end_date)
   end
 
   def all_bookings

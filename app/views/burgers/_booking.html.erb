@@ -2,14 +2,15 @@
   <% unless @burger.user == current_user %>
     <div class="card bg-info bg-opacity-10 border-0 rounded-4 p-4">
       <h2>Book now!</h2>
-
-      <form action="burgers/<%= @burger.id %>/bookings" method="POST">
+      <%= simple_form_for [@burger, @booking] do |f| %>
         <div data-calendar-target="form" data-controller="calendar">
-          <input type="text" name="start_date" autocomplete="off">
-          <input type="text" name="end_date" autocomplete="off">
+          <%= f.text_field	 :start_date, name: "start_date", autocomplete: "off" %>
+          <%= f.text_field   :end_date, name: "end_date", autocomplete: "off" %>
         </div>
-        <input type="submit" value="Book" class="button-main button-book">
-      </form>
+        <%= f.submit "Submit booking", class: "button-book" %>
+
+      <% end %>
+      
     </div>
   <% end %>
 <% else %>

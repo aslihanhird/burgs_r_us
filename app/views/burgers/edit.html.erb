@@ -1,10 +1,13 @@
 <div class="container my-4">
   <div class="row">
-    <div class="col-sm-8 col-lg-4 p-4 background-white rounded-4 shadow-sm">
+
+    <div class="col-sm-8 col-lg-6 p-4 background-white rounded-4 shadow-sm">
       <h1>Edit-A-Burg</h1>
+
       <%= simple_form_for(@burger) do |f| %>
         <%= f.input :name, label: "Name" %>
         <%= f.input :description, label: "Description" %>
+        <%= f.input :price, label: "Price per day (€)" %>
         <%= f.input :photos,
                 label: "Add photos",
                 as: :file,
@@ -12,16 +15,37 @@
         <%= f.submit %>
       <% end %>
       <h4>Your attached pictures</h4>
-      <p>Currently you are only able to add pictures. You can't delete them (yet!)</p>
+      <% if @burger.photos.size <= 1 %>
+        <p>You can't delete this picture because you only have one picture.</p>
+      <% end %>
+
       <div class="d-block">
+        <% counter = 0 %>
         <% @burger.photos.each do |picture| %>
-            <%= cl_image_tag(picture.key, class: "rounded", width: "200", height: "200", crop: "fill") %>
+
+            <div class="burger-edit-photo">
+                <%= cl_image_tag(picture.key, class: "rounded", width: "200", height: "200", crop: "fill") %>
+
+                <%# Only show delete button if there is more than 1 picture %>
+                <% if @burger.photos.size > 1 %>
+                  <%# If I click this, do an action and refresh the page %>
+                  <%= form_with url: "/delete/picture", method: :post do |f| %>
+                    <%= f.hidden_field :picture_index, value: counter %>
+                    <%= f.hidden_field :burger_id, value: @burger.id %>
+                    <%= f.submit "❌", class: "delete-btn", data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this picture?" }%>
+                  <% end %>
+                <% end %>
+            </div>
+            <%# <%= link_to "Delete", root_path, data: {test: "Here is a string"} %>
+            <% counter += 1 %>
         <% end %>
       </div>
     </div>
-    <div class="col-sm-4 col-lg-8 d-flex align-content-center">
-      <%= image_tag "veggie_burg.png", width: "100%", style:"object-fit: cover", class: "rounded-4 hidable" %>
+    <div class="col-sm-4 col-lg-6 d-flex align-content-center">
+      <%= cl_image_tag(@burger.photos.first.key, width: "100%", style: "object-fit: cover", class: "rounded-4 hidable") %>
     </div>
+
+
   </div>
-  <%= link_to "Back to burger", :back %>
+  <%= link_to "← back to burger", burger_path(@burger), class: "btn btn-outline-primary mt-5 mb-5" %>
 </div>

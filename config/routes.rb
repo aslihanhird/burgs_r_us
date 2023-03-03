@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   get "bookings/:id/confirmed", to: "bookings#confirmed", as: "booking_confirmed"
   get "profile/:username", to: "pages#profile", as: "profile"
+
+  post "delete/picture", to: "burgers#delete_picture", as: "delete_picture"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

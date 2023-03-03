@@ -9,4 +9,9 @@
     text-decoration: none !important;
     color: #322E2A;
   }
+  transition: box-shadow 0.5s ease;
+}
+
+.card.shadow:hover {
+  box-shadow: 0 5px 12px rgba(50, 46, 42, 0.3) !important;
 }

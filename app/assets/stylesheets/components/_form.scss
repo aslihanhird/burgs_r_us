@@ -37,6 +37,34 @@ input[type="submit"]:hover {
   background-color: #516DF5
 }
 
+//  Overwrites everything for a delete button on the edit page
+.burger-edit-photo {
+  position: relative;
+  margin-bottom: 16px;
+}
+
+input[type="submit"].delete-btn {
+  background-image: none;
+
+  margin: 0 0;
+  width:fit-content;
+  // Background color set to full transparent
+  background-color: rgb(255, 255, 255);
+  border-radius: 500px;
+  font-weight: 500;
+  color: #FD1015;
+  border: none;
+  text-decoration: none;
+  text-align: left;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+input[type="submit"].delete-btn {
+  opacity: 0.9;
+}
+
 .background-white {
   background-color: #FCFCFC;
 }

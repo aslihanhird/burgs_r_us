@@ -1,9 +1,10 @@
 <div class="container my-5">
+  <div class="card rounded-4 border-0 p-4 shadow-sm">
     <h1>Edit review</h1>
     <%= simple_form_for [@burger, @review] do |f| %>
       <%= f.input :content %>
-      <%= f.label :rating %>
-      <%= f.collection_select :rating, [[1, '⭐'], [2, '⭐⭐'], [3, '⭐⭐⭐'], [4, '⭐⭐⭐⭐'], [5, '⭐⭐⭐⭐⭐']], :first, :last %>
+      <%= f.input :rating, as: :select, collection: [['1', 'Terrible 😔'], ['2', 'Poor 😐'], ['3', 'Good 😊'], ['4', 'Great 😁'], ['5', 'Excellent 😍']], label_method: :second, value_method: :first, label: "Rate your experience", input_html: {data: {controller: "star-rating"}} %>
       <%= f.submit "Submit review", class: "btn btn-primary" %>
     <% end %>
+  </div>
 </div>

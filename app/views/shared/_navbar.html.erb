@@ -11,35 +11,25 @@
           <%# <% if user_signed_in? %>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav me-auto">
-                    <% unless current_user %>
-                      <li class="nav-item">
-                        <%= link_to "Create an account", new_user_registration_path, class: "btn btn-outline-info rounded-4 mx-1" %>
-                      </li>
+                <% unless current_user %>
+                  <li class="nav-item">
+                    <%= link_to "Create an account", new_user_registration_path, class: "btn btn-outline-info rounded-4 mx-1" %>
+                  </li>
 
-                      <li class="nav-item">
-                        <%= link_to "Login",  new_user_session_path, class: "btn btn-outline-info rounded-4 mx-1" %>
-                      </li>
-                    <% end %>
+                  <li class="nav-item">
+                    <%= link_to "Login",  new_user_session_path, class: "btn btn-outline-info rounded-4 mx-1" %>
+                  </li>
+                <% end %>
 
-                    <%#  ACTIONS AS LOGGED IN USER %>
-                    <% if current_user %>
+                <%#  ACTIONS AS LOGGED IN USER %>
+                <% if current_user %>
+                        <%= link_to "Add a burger", new_burger_path, class: "btn btn-outline-info rounded-4 mx-1" %>
+                        <%= link_to "Your profile", profile_path(current_user.username), class: "btn btn-outline-info rounded-4 mx-1" %>
+                        <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "btn btn-outline-info rounded-4 mx-1" %>
 
-                      <li class="nav-item dropdown">
-
-
-                        <div class="dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-hashpopup="true">
-                          <i class="fa-solid fa-bars"></i>
-                        </div>
-
-                          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                              <%= link_to "Add a burger", new_burger_path, class: "dropdown-item" %>
-                              <%= link_to "Your profile", profile_path(current_user.username), class: "dropdown-item" %>
-                              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
-                          </div>
-                      </li>
-                    <% end %>
-                  <!--li class="nav-item"-->
-                  <!--/li-->
+                <% end %>
+                <!--li class="nav-item"-->
+                <!--/li-->
               </ul>
             </div>
           <%# <% end %>

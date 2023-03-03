@@ -8,6 +8,13 @@ class Burger < ApplicationRecord
   validates :description, presence: true
   validate :min_photo_amount, :max_photo_amount
 
+  include PgSearch::Model
+    pg_search_scope :search_burgers,
+    against: [ :name, :description ],
+    using: {
+    tsearch: { prefix: true }
+  }
+
   def average_rating
     reviews = self.reviews
     all_ratings = 0

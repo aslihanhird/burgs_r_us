@@ -10,5 +10,11 @@ application.register("calendar", CalendarController)
 import CalendarDatePickerController from "./calendar_date_picker_controller"
 application.register("calendar-date-picker", CalendarDatePickerController)
 
+import BookingModalController from "./booking_modal_controller"
+application.register("booking-modal", BookingModalController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import StarRatingController from "./star_rating_controller"
+application.register("star-rating", StarRatingController)

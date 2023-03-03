@@ -8,7 +8,8 @@ class BookingsController < ApplicationController
     @booking.user_id = current_user.id
     @booking.burger = @burger
     if @booking.save
-      redirect_to booking_confirmed_path(@booking)
+      redirect_to burger_path(@booking.burger, booking_id: ["#{@booking.id}"])
+      # render 'burgers/booking_modal'
       # burger_path(@burger)
     else
       render 'burgers/show', status: :unprocessable_entity

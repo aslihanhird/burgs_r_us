@@ -1,6 +1,6 @@
 <% if user_signed_in? %>
   <% unless @burger.user == current_user %>
-    <div class="card bg-info bg-opacity-10 border-0 rounded-4 p-4">
+    <div class="card bg-info bg-opacity-10 border-0 rounded-4 p-4", data-controller="booking-modal">
       <h2>Book now!</h2>
       <%= simple_form_for [@burger, @booking] do |f| %>
         <div data-calendar-target="form" data-controller="calendar">
@@ -8,7 +8,10 @@
           <%= f.text_field   :end_date, name: "end_date", autocomplete: "off", class: "date-input", placeholder: "End" %>
         </div>
         <%= f.submit "Submit booking", class: "button-book" %>
-
+        
+        <% if params[:booking_id].present? %>
+          <%= render 'booking_modal' %>
+        <% end %>
       <% end %>
 
     </div>

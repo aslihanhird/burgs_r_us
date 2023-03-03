@@ -17,7 +17,7 @@
       </div>
 
       <%= render "burgers/booking" %>
-      
+
       <%# EDIT & DELETE LINKS, ONLY SHOW IF USER IS THE OWNER OF THE BURGER %>
 
       <% if current_user == @burger.user %>
@@ -35,7 +35,7 @@
         <h2>Current bookings</h2>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 p-3">
           <% @burger.bookings.each do |booking| %>
-            <div class="card bg-info bg-opacity-10 border-0 rounded-4 p-4 text-center shadow-sm">
+            <div class="card bg-info bg-opacity-10 border-0 rounded-4 p-4 text-center shadow-sm m-3">
               <h3><%= booking.user.username %>'s booking</h3>
               <h4 class="text-info fs-5 p-3 mb-0"><%= booking.start_date.day %>/<%= booking.start_date.month %>/<%= booking.start_date.year %>
               - <%= booking.end_date.day %>/<%= booking.end_date.month %>/<%= booking.end_date.year %></h4>

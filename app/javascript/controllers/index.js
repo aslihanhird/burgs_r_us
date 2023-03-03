@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import BookingModalController from "./booking_modal_controller"
+application.register("booking-modal", BookingModalController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 

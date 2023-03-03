@@ -30,12 +30,12 @@
   </div>
 
   <% if @burger.bookings.count != 0 %>
-    <div class="row g-3 mt-3">
-      <div class="col card rounded-4 border-0 p-4 shadow-sm mt-3">
+    <div class="row">
+      <div class="card rounded-4 border-0 p-4 shadow-sm mt-3">
         <h2>Current bookings</h2>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 p-3">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3 mt-2">
           <% @burger.bookings.each do |booking| %>
-            <div class="card bg-info bg-opacity-10 border-0 rounded-4 p-4 text-center shadow-sm m-3">
+            <div class="col m-2 card bg-info bg-opacity-10 border-0 rounded-4 p-3 text-center shadow-sm">
               <h3><%= booking.user.username %>'s booking</h3>
               <h4 class="text-info fs-5 p-3 mb-0"><%= booking.start_date.day %>/<%= booking.start_date.month %>/<%= booking.start_date.year %>
               - <%= booking.end_date.day %>/<%= booking.end_date.month %>/<%= booking.end_date.year %></h4>
@@ -45,9 +45,9 @@
       </div>
     </div>
   <% end %>
-
-  <div class="row g-3 mt-3">
-    <div class="col card rounded-4 border-0 p-4 shadow-sm mt-3">
+  
+  <div class="row">
+    <div class="card rounded-4 border-0 p-4 shadow-sm mt-3">
       <div class="d-flex justify-content-between align-items-center">
         <h2>Reviews</h2>
         <% if @can_review %>
@@ -76,8 +76,5 @@
         <p class="text-muted">No reviews yet</p>
       <% end %>
     </div>
-
-
-
   </div>
 </div>

@@ -248,7 +248,7 @@ puts "--------------------------------"
 puts "Bookings in the past:"
 puts "--------------------------------"
 
-Burger.all.each do |burger|
+Burger.all.each do |each_burger|
   start_date = Date.today - rand(1..10)
   end_date = start_date + rand(1..10)
 
@@ -258,7 +258,7 @@ Burger.all.each do |burger|
   )
 
   booking.user = User.all.sample
-  booking.burger = burger
+  booking.burger = each_burger
 
   if booking.save(validate: false)
     puts "Booking (ID: #{booking.id}) saved succesfully."

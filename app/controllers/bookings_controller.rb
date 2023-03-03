@@ -7,7 +7,6 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @booking.user_id = current_user.id
     @booking.burger = @burger
-
     if @booking.save
       redirect_to booking_confirmed_path(@booking)
       # burger_path(@burger)

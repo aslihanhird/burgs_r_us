@@ -18,6 +18,7 @@ class BurgersController < ApplicationController
   def show
     @booking = Booking.new
     @review = Review.new
+    @new_booking = Booking.find(params[:booking_id])[0] if params[:booking_id].present?
   end
 
   def new

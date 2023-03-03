@@ -9,7 +9,7 @@ class BookingsController < ApplicationController
     @booking.burger = @burger
 
     if @booking.save
-      # redirect_to burger_path(@booking.burger)
+      redirect_to burger_path(@booking.burger, booking_id: ["#{@booking.id}"])
       # render 'burgers/booking_modal'
       # burger_path(@burger)
     else

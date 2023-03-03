@@ -8,6 +8,7 @@ class Burger < ApplicationRecord
   validates :description, presence: true
   validate :min_photo_amount, :max_photo_amount
 
+
   def average_rating
     reviews = self.reviews
     all_ratings = 0

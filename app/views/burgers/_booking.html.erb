@@ -4,13 +4,13 @@
       <h2>Book now!</h2>
       <%= simple_form_for [@burger, @booking] do |f| %>
         <div data-calendar-target="form" data-controller="calendar">
-          <%= f.text_field	 :start_date, name: "start_date", autocomplete: "off" %>
-          <%= f.text_field   :end_date, name: "end_date", autocomplete: "off" %>
+          <%= f.text_field	 :start_date, name: "start_date", autocomplete: "off", class: "date-input", placeholder: "Start" %>
+          <%= f.text_field   :end_date, name: "end_date", autocomplete: "off", class: "date-input", placeholder: "End" %>
         </div>
         <%= f.submit "Submit booking", class: "button-book" %>
 
       <% end %>
-      
+
     </div>
   <% end %>
 <% else %>

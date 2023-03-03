@@ -47,9 +47,7 @@
       <div class="row row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-3 p-3">
         <% @profile.bookings.reverse_each do |booking| %>
 
-
-
-          <%= link_to burger_path(booking.burger) do %>
+            <%= link_to burger_path(booking.burger) do %>
             <div class="col">
               <div class="card h-100 border-0 rounded-3 shadow">
                 <div class="card-body">
@@ -64,7 +62,10 @@
                 </div>
               </div>
             </div>
-          <% end %>
+            <% end %>
+
+
+
 
         <% end %>
       </div>
@@ -90,10 +91,13 @@
                 </div>
               </div>
               <div class="card-footer d-flex justify-content-between border-0">
+                <%= link_to "Edit", edit_review_path(review) %>
+
                 <%= link_to "Delete",
                   review_path(review),
                   data: {turbo_method: :delete, turbo_confirm: "Really delete this review?"},
                   class: "text-danger" %>
+
               </div>
             </div>
           </div>

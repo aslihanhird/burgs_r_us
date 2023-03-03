@@ -6,7 +6,8 @@ export default class extends Controller {
 
   connect() {
     const myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
-
+    // const myModal = new bootstrap.Modal('#myModal');
+    // const myModal = document.getElementById('myModal')
     myModal.show()
   }
 }

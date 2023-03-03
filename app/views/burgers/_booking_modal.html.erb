@@ -13,7 +13,7 @@
               <p><%= @new_booking.start_date.day %>/<%= @new_booking.start_date.month %>/<%= @new_booking.start_date.year %> - <%= @new_booking.end_date.day %>/<%= @new_booking.end_date.month %>/<%= @new_booking.end_date.year %></p>
             </div>
             <div class="p-3">
-              <h6>$$$</h6>
+              <h6><strong>€ <%= @new_booking.burger.price.truncate(2) %></strong> / day</h6>
             </div>
           </div>
       </div>

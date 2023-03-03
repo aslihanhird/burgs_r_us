@@ -1,4 +1,4 @@
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-booking-modal-target="">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -7,14 +7,11 @@
       </div>
       <div class="modal-body">
         <h4>Dates</h4>
-        <% if @booking_new %>
-          <% raise %>
-          <p><%= @booking_new.start_date %> to <%= @booking_new.end_date %></p>
-        <% end %>
+          <p><%= booking.start_date %> to <%= booking.end_date %></p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-action="click->booking-modal#refresh">Save changes</button>
       </div>
     </div>
   </div>
